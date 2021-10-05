@@ -1,0 +1,9 @@
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+radiobot:
+  api-keys:
+    radiobot: ${RADIOBOT-API-KEY}
+    accuweather: ${ACCUWEATHER-API-KEY}
+    gcloud: ${GCLOUD-API-KEY}
