@@ -1,0 +1,430 @@
+{
+	"info": {
+		"_postman_id": "6343e03b-65d5-4273-8a51-6b3848c848f7",
+		"name": "RadioBot API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Lisbon Weather - External",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const moment = require('moment');",
+							"",
+							"var jsonData = JSON.parse(responseBody)[0];",
+							"var date = moment();",
+							"",
+							"postman.setEnvironmentVariable(\"temp-value\", jsonData.Temperature.Value);",
+							"postman.setEnvironmentVariable(\"temp-real-feel\", jsonData.RealFeelTemperature.Value);",
+							"",
+							"postman.setEnvironmentVariable(\"wind-speed\", jsonData.Wind.Speed.Value);",
+							"postman.setEnvironmentVariable(\"wind-dir\", jsonData.Wind.Direction.Degrees);",
+							"postman.setEnvironmentVariable(\"wind-gust\", jsonData.WindGust.Speed.Value);",
+							"",
+							"postman.setEnvironmentVariable(\"humidity-relative\", jsonData.RelativeHumidity);",
+							"",
+							"postman.setEnvironmentVariable(\"actual-sky\", jsonData.IconPhrase);",
+							"postman.setEnvironmentVariable(\"cloud-cover\", jsonData.CloudCover);",
+							"postman.setEnvironmentVariable(\"cloud-uv-index\", jsonData.UVIndexText);",
+							"postman.setEnvironmentVariable(\"rain-proba\", jsonData.RainProbability);",
+							"",
+							"postman.setEnvironmentVariable(\"date-month-name\", date.format('MMMM'));",
+							"postman.setEnvironmentVariable(\"date-week-day\", date.format('dddd'));",
+							"postman.setEnvironmentVariable(\"date-year\", date.format('YYYY'));",
+							"postman.setEnvironmentVariable(\"date-day\", date.format('D'));",
+							"postman.setEnvironmentVariable(\"date-hour\", date.format('H'));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/274087?apikey={{accu-eather-api-key}}&language=pt-pt&details=true&metric=true",
+					"protocol": "http",
+					"host": [
+						"dataservice",
+						"accuweather",
+						"com"
+					],
+					"path": [
+						"forecasts",
+						"v1",
+						"hourly",
+						"1hour",
+						"274087"
+					],
+					"query": [
+						{
+							"key": "apikey",
+							"value": "{{accu-eather-api-key}}"
+						},
+						{
+							"key": "language",
+							"value": "pt-pt"
+						},
+						{
+							"key": "details",
+							"value": "true"
+						},
+						{
+							"key": "metric",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Lisbon Weather - External",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/274087?apikey={{accu-eather-api-key}}&language=pt-pt&details=true&metric=true",
+							"protocol": "http",
+							"host": [
+								"dataservice",
+								"accuweather",
+								"com"
+							],
+							"path": [
+								"forecasts",
+								"v1",
+								"hourly",
+								"1hour",
+								"274087"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{accu-eather-api-key}}"
+								},
+								{
+									"key": "language",
+									"value": "pt-pt"
+								},
+								{
+									"key": "details",
+									"value": "true"
+								},
+								{
+									"key": "metric",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 16 Sep 2021 20:08:04 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0"
+						},
+						{
+							"key": "RateLimit-Limit",
+							"value": "50"
+						},
+						{
+							"key": "RateLimit-Remaining",
+							"value": "39"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, PUT, POST, DELETE"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "origin, x-requested-with, accept"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "3628800"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "public, max-age=1156"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 16 Sep 2021 20:27:20 GMT"
+						},
+						{
+							"key": "Accept",
+							"value": "*/*"
+						},
+						{
+							"key": "Accept-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Accept-Encoding",
+							"value": "deflate"
+						},
+						{
+							"key": "Accept-Encoding",
+							"value": "br"
+						},
+						{
+							"key": "Host",
+							"value": "api.accuweather.com"
+						},
+						{
+							"key": "User-Agent",
+							"value": "PostmanRuntime/7.28.4"
+						},
+						{
+							"key": "X-Forwarded-For",
+							"value": "93.108.192.62"
+						},
+						{
+							"key": "X-Forwarded-Port",
+							"value": "80"
+						},
+						{
+							"key": "X-Forwarded-Proto",
+							"value": "http"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"DateTime\": \"2021-09-16T22:00:00+01:00\",\n        \"EpochDateTime\": 1631826000,\n        \"WeatherIcon\": 33,\n        \"IconPhrase\": \"Limpo\",\n        \"HasPrecipitation\": false,\n        \"IsDaylight\": false,\n        \"Temperature\": {\n            \"Value\": 19.6,\n            \"Unit\": \"C\",\n            \"UnitType\": 17\n        },\n        \"RealFeelTemperature\": {\n            \"Value\": 17.9,\n            \"Unit\": \"C\",\n            \"UnitType\": 17\n        },\n        \"RealFeelTemperatureShade\": {\n            \"Value\": 17.9,\n            \"Unit\": \"C\",\n            \"UnitType\": 17\n        },\n        \"WetBulbTemperature\": {\n            \"Value\": 17.4,\n            \"Unit\": \"C\",\n            \"UnitType\": 17\n        },\n        \"DewPoint\": {\n            \"Value\": 15.9,\n            \"Unit\": \"C\",\n            \"UnitType\": 17\n        },\n        \"Wind\": {\n            \"Speed\": {\n                \"Value\": 14.8,\n                \"Unit\": \"km/h\",\n                \"UnitType\": 7\n            },\n            \"Direction\": {\n                \"Degrees\": 340,\n                \"Localized\": \"NNO\",\n                \"English\": \"NNW\"\n            }\n        },\n        \"WindGust\": {\n            \"Speed\": {\n                \"Value\": 29.6,\n                \"Unit\": \"km/h\",\n                \"UnitType\": 7\n            }\n        },\n        \"RelativeHumidity\": 79,\n        \"IndoorRelativeHumidity\": 77,\n        \"Visibility\": {\n            \"Value\": 16.1,\n            \"Unit\": \"km\",\n            \"UnitType\": 6\n        },\n        \"Ceiling\": {\n            \"Value\": 9144,\n            \"Unit\": \"m\",\n            \"UnitType\": 5\n        },\n        \"UVIndex\": 0,\n        \"UVIndexText\": \"Baixo\",\n        \"PrecipitationProbability\": 0,\n        \"ThunderstormProbability\": 0,\n        \"RainProbability\": 0,\n        \"SnowProbability\": 0,\n        \"IceProbability\": 0,\n        \"TotalLiquid\": {\n            \"Value\": 0,\n            \"Unit\": \"mm\",\n            \"UnitType\": 3\n        },\n        \"Rain\": {\n            \"Value\": 0,\n            \"Unit\": \"mm\",\n            \"UnitType\": 3\n        },\n        \"Snow\": {\n            \"Value\": 0,\n            \"Unit\": \"cm\",\n            \"UnitType\": 4\n        },\n        \"Ice\": {\n            \"Value\": 0,\n            \"Unit\": \"mm\",\n            \"UnitType\": 3\n        },\n        \"CloudCover\": 4,\n        \"Evapotranspiration\": {\n            \"Value\": 0,\n            \"Unit\": \"mm\",\n            \"UnitType\": 3\n        },\n        \"SolarIrradiance\": {\n            \"Value\": 0,\n            \"Unit\": \"W/m²\",\n            \"UnitType\": 33\n        },\n        \"MobileLink\": \"http://www.accuweather.com/pt/pt/lisbon/274087/hourly-weather-forecast/274087?day=1&hbhhour=22&unit=c\",\n        \"Link\": \"http://www.accuweather.com/pt/pt/lisbon/274087/hourly-weather-forecast/274087?day=1&hbhhour=22&unit=c\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get Speech - External",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json; charset=utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"input\": {\n        \"text\": \"Previsão do tempo. Lisboa, {{date-week-day}}, dia {{date-day}} de {{date-month-name}} de {{date-year}}, hora atual {{date-hour}} horas. A temperatura atual em Lisboa é de {{temp-value}} graus, com sensação térmica de {{temp-real-feel}} graus. O céu está {{actual-sky}} neste exato momento. Cobertura de nuvens de {{cloud-cover}} porcento. Com probabilidades de chuva de {{rain-proba}} porcento. A velocidade do vento é de {{wind-speed}} quilometros por hora, em direção a {{wind-dir}} graus, com rajadas de até {{wind-gust}} quilometros por hora. O índice solar atual é {{cloud-uv-index}}. Estação águia. Previsões do tempo de hora em hora. Tenham um bom dia.\"\n    },\n    \"voice\": {\n        \"languageCode\": \"pt-PT\",\n        \"name\": \"pt-PT-Wavenet-D\",\n        \"ssmlGender\": \"FEMALE\"\n    },\n    \"audioConfig\": {\n        \"audioEncoding\": \"MP3\",\n        \"speakingRate\": 0.92,\n        \"pitch\": -5.2,\n        \"effectsProfileId\": [\n            \"large-home-entertainment-class-device\"\n        ]\n    }\n}"
+				},
+				"url": {
+					"raw": "https://texttospeech.googleapis.com/v1/text:synthesize?key={{goggle-cloud-api-Key}}",
+					"protocol": "https",
+					"host": [
+						"texttospeech",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"v1",
+						"text:synthesize"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{goggle-cloud-api-Key}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Speech - External",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"input\": {\n        \"text\": \"Previsão do tempo. Lisboa, Sexta-feira, dia 15 de Setembro de 2021, hora atual 22 horas. Em Lisboa a previsão máxima do dia é de 27 graus. A mínima está prevista para 19 graus. Estação águia. Previsões do tempo de hora em hora. Tenham um bom dia.\"\n    },\n    \"voice\": {\n        \"languageCode\": \"pt-PT\",\n        \"name\": \"pt-PT-Wavenet-D\",\n        \"ssmlGender\": \"FEMALE\"\n    },\n    \"audioConfig\": {\n        \"audioEncoding\": \"MP3\",\n        \"speakingRate\": 0.92,\n        \"pitch\": -5.2,\n        \"effectsProfileId\": [\n            \"large-home-entertainment-class-device\"\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://texttospeech.googleapis.com/v1/text:synthesize?key={{goggle-cloud-api-Key}}",
+							"protocol": "https",
+							"host": [
+								"texttospeech",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"v1",
+								"text:synthesize"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{goggle-cloud-api-Key}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "X-Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Referer"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 16 Sep 2021 20:12:47 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "ESF"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\""
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"audioContent\": \"base64 here\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Execute",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{radiobot-api-Key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/execute",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"execute"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "accu-eather-api-key",
+			"value": ""
+		},
+		{
+			"key": "goggle-cloud-api-Key",
+			"value": ""
+		},
+		{
+			"key": "radiobot-api-Key",
+			"value": ""
+		}
+	]
+}
